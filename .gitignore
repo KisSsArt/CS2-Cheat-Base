@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+*.log
+
+.vs/
+Cheat-Base/x64/
+
