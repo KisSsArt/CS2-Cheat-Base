@@ -4,5 +4,5 @@
 
 struct GameTick_t {
 public:
-	std::int32_t m_Value;
+	int value;
 };
