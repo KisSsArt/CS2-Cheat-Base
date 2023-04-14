@@ -22,23 +22,23 @@ public:
     }
 
     template <typename T>
-    T GetAs() {
+    T get() {
         return (T)(m_val);
     }
 
-    UTILPtr& AddOffset(int offset) {
+    UTILPtr& addOffset(int offset) {
         if (m_val) m_val += offset;
         return *this;
     }
-    UTILPtr& ToAbsolute(int preOffset, int postOffset) {
+    UTILPtr& toAbsolute(int preOffset, int postOffset) {
         if (m_val) {
-            AddOffset(preOffset);
+            addOffset(preOffset);
             m_val = m_val + sizeof(int) + *(int*)(m_val);
-            AddOffset(postOffset);
+            addOffset(postOffset);
         }
         return *this;
     }
-    UTILPtr& Dereference(int dereferences) {
+    UTILPtr& dereference(int dereferences) {
         if (m_val)
             while (dereferences-- != 0) m_val = *(uintptr_t*)(m_val);
         return *this;
@@ -50,24 +50,29 @@ private:
 
 class CModule {
 public:
+    CModule() {};
     CModule(CModule&&) = delete;
     CModule(const CModule&) = delete;
 
-    explicit CModule(const char* name, bool shouldLoad) {
+    explicit CModule(const char* name) {
         this->m_name = name;
-        if (shouldLoad) Load();
+        this->Load();
+    }
+    void init(const char* name)
+    {
+        this->m_name = name;
+        this->Load();
     }
     void Load() {
-        InitializeHandle();
-        InitializeBounds();
+        this->InitializeHandle();
+        this->InitializeBounds();
     }
 
     template <typename T = void*>
     auto GetProcAddress(const char* procName) const {
         T rv = nullptr;
         if (this->IsLoaded()) {
-            rv = reinterpret_cast<T>(::GetProcAddress(
-                static_cast<HMODULE>(this->m_handle), procName));
+            rv = reinterpret_cast<T>(::GetProcAddress(static_cast<HMODULE>(this->m_handle), procName));
         }
         return rv;
     }
@@ -76,9 +81,7 @@ public:
         void* rv = nullptr;
         if (this->IsLoaded()) {
             UTILPtr pCreateInterface = this->GetProcAddress("CreateInterface");
-            InterfaceReg* s_pInterfaceRegs = pCreateInterface.ToAbsolute(3, 0)
-                .Dereference(1)
-                .GetAs<InterfaceReg*>();
+            InterfaceReg* s_pInterfaceRegs = pCreateInterface.toAbsolute(3, 0).dereference(1).get<InterfaceReg*>();
 
             for (; s_pInterfaceRegs;
                 s_pInterfaceRegs = s_pInterfaceRegs->m_pNext) {
@@ -121,12 +124,11 @@ private:
         this->m_handle = static_cast<void*>(GetModuleHandle(this->GetName()));
     }
     void InitializeBounds() {
-        if (!this->IsLoaded()) return;
+        if (!this->IsLoaded()) 
+            return;
 
         MODULEINFO mi;
-        BOOL status = GetModuleInformation(GetCurrentProcess(),
-            static_cast<HMODULE>(this->m_handle),
-            &mi, sizeof(mi));
+        BOOL status = GetModuleInformation(GetCurrentProcess(), static_cast<HMODULE>(this->m_handle), &mi, sizeof(mi));
         if (status != 0) {
             this->m_start = reinterpret_cast<uintptr_t>(this->m_handle);
             this->m_end = static_cast<uintptr_t>(mi.SizeOfImage);
