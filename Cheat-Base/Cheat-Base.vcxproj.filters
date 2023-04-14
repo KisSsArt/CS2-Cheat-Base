@@ -72,9 +72,6 @@
     <ClCompile Include="Source\SDK\Source2\InputSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SDK\ScanUtils\winapi.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SDK\Utils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -97,6 +94,15 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Source\Hacks\Visuals.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SDK\Source2\BasePlayerWeapon.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SDK\Source2\BasePlayerController.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SDK\Source2\CPlayer_WeaponServices.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -197,15 +203,6 @@
     <ClInclude Include="Source\SDK\ScanUtils\Module.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SDK\ScanUtils\Signature.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SDK\ScanUtils\winapi.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SDK\ScanUtils\nt.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Source\SDK\Source2\Input.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -276,6 +273,18 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Source\Hacks\Visuals.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\Source2\CPlayer_WeaponServices.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\Source2\BasePlayerWeapon.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\Source2\GameTick.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\Source2\EconEntity.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
