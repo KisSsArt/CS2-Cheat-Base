@@ -32,8 +32,8 @@ private:
 };
 
 // https://github.com/neverlosecc/source2gen/blob/main/include/sdk/interfaces/common/CUtlTSHash.h
-template< class T, class Keytype = std::uint64_t >
-class c_utl_ts_hash {
+template<class T, class Keytype = std::uint64_t>
+class utlTsHash {
 public:
     // Invalid handle.
     static UtlTsHashHandleT InvalidHandle(void)
@@ -123,8 +123,8 @@ public:
     bool m_needs_commit_ = false;
 };
 
-template< class T, class Keytype >
-std::vector< T > c_utl_ts_hash< T, Keytype >::GetElements(void)
+template<class T, class Keytype>
+std::vector<T> utlTsHash<T, Keytype>::GetElements(void)
 {
     std::vector< T > list;
 

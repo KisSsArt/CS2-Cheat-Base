@@ -143,13 +143,6 @@ struct Vector
                  this->z >= v.z };
     }
 
-    bool roughlyEqual(const Vector v, float difference = 1.f) const noexcept
-    {
-        if ((v.x - difference <= x) && (x <= v.x + difference) && (v.y - difference <= y) && (y <= v.y + difference) && (v.z - difference <= z) && (z <= v.z + difference))
-            return true;
-        return false;
-    }
-
     bool is_valid() const { return std::isfinite(x) && std::isfinite(y) && std::isfinite(z); }
 
     void Zero() noexcept
@@ -160,30 +153,6 @@ struct Vector
     bool isZero() const noexcept
     {
         return x == 0.0f && y == 0.0f && z == 0.0f;
-    }
-
-    Vector normalized() noexcept
-    {
-        auto vectorNormalize = [](Vector& vector)
-        {
-            float radius = std::sqrtf(std::powf(vector.x, 2) + std::powf(vector.y, 2) + std::powf(vector.z, 2));
-            radius = 1.f / (radius + FLT_EPSILON);
-
-            vector *= radius;
-
-            return radius;
-        };
-        Vector v = *this;
-        vectorNormalize(v);
-        return v;
-    }
-
-    Vector normalize() noexcept
-    {
-        x = std::isfinite(x) ? std::remainder(x, 360.0f) : 0.0f;
-        y = std::isfinite(y) ? std::remainder(y, 360.0f) : 0.0f;
-        z = 0.0f;
-        return *this;
     }
 
     auto distance(const Vector& v) const noexcept
@@ -221,41 +190,11 @@ struct Vector
         return (x * f[0] + y * f[1] + z * f[2]);
     }
 
-    Vector Normalized() const
-    {
-        Vector res = *this;
-        float l = res.length();
-        if (l) res /= l;
-        else res.x = res.y = res.z = 0.0f;
-        return res;
-    }
-
     Vector Cross(const Vector& vOther) const noexcept;
-
-    Vector normalizeInPlace() noexcept
-    {
-        float iradius = 1.0f / (length() + FLT_EPSILON);
-        x *= iradius;
-        y *= iradius;
-        z *= iradius;
-        return Vector(x, y, z);
-    }
 
     auto distTo(const Vector& v) const noexcept
     {
         return (*this - v).length();
-    }
-
-    float Normalize() const
-    {
-        Vector res = *this;
-        float l = res.length();
-        if (l)
-            res /= l;
-        else
-            res.x = res.y = res.z = 0.0f;
-
-        return l;
     }
 
     void Init(float x = 0.0f, float y = 0.0f, float z = 0.0f)
