@@ -41,24 +41,24 @@ public:
     PAD(40) // 0x0020
 };                      // Size: 0x0050
 
-struct SSubTickCmd
+struct SubTickCmd
 {
     PAD(0x18);
     CMsgQAngle* AnglesMsg;
 };
 
-struct SSubTicksContainer
+struct SubTicksContainer
 {
-    uint32_t Count;
+    uint32_t count;
     PAD(0x4);
-    uint64_t Memory;
+    uint64_t memory;
 
-    SSubTickCmd* Get(int i)
+    SubTickCmd* Get(int i)
     {
-        if (i < Count)
+        if (i < count)
         {
-            SSubTickCmd** List = (SSubTickCmd**)(Memory + 0x8);
-            return List[i];
+            SubTickCmd** list = (SubTickCmd**)(memory + 0x8);
+            return list[i];
         }
         return nullptr;
     }
@@ -73,15 +73,19 @@ public:
         IN_FORWARD = 1 << 3,
         IN_BACK = 1 << 4,
         IN_USE = 1 << 5,
+        IN_TURNLEFT = 1 << 7,
+        IN_TURNRIGHT = 1 << 8,
         IN_MOVELEFT = 1 << 9,
         IN_MOVERIGHT = 1 << 10,
         IN_ATTACK2 = 1 << 11,
         IN_RELOAD = 1 << 13,
-        IN_SCORE = 1 << 16,
-        IN_SPEED = 1 << 17,
-        IN_WALK = 1 << 18,
-        IN_ZOOM = 1 << 19,
-        IN_BULLRUSH = 1 << 22
+        IN_SPEED = 1 << 16,
+        IN_JOYAUTOSPRINT = 1 << 17,
+        IN_FIRST_MOD_SPECIFIC_BIT = 1 << 32,
+        IN_USEORRELOAD = 1 << 32,
+        IN_SCORE = 8589934592,
+        IN_ZOOM = 17179869184,
+        IN_JUMP_THROW_RELEASE = 34359738368,
     };
 
     PAD(48);               //0x0000
@@ -95,15 +99,15 @@ public:
         return base;
     }
 
-    SSubTicksContainer GetSubTicksContainer()
+    SubTicksContainer GetSubTicksContainer()
     {
-        return *(SSubTicksContainer*)((uintptr_t)this + 0x20);
+        return *(SubTicksContainer*)((uintptr_t)this + 0x20);
     }
 
     void setSubTickAngles(const Vector& Angles)
     {
         auto subTicks = GetSubTicksContainer();
-        for (int i = 0; i < subTicks.Count; i++)
+        for (int i = 0; i < subTicks.count; i++)
         {
             auto* tick = subTicks.Get(i);
             if (tick && tick->AnglesMsg)
