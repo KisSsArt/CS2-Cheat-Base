@@ -1,3 +1,6 @@
 #pragma once
 
-#include <Windows.h>
+struct ImVec2;
+struct Vector;
+
+bool worldToScreen(Vector& origin, ImVec2& out);
