@@ -156,6 +156,8 @@
     <ClCompile Include="Dependencies\kiero\kiero.cpp" />
     <ClCompile Include="Source\Cheat-Base.cpp" />
     <ClCompile Include="Source\Config\Config.cpp" />
+    <ClCompile Include="Source\GameData\GameData.cpp" />
+    <ClCompile Include="Source\Hacks\ESP.cpp" />
     <ClCompile Include="Source\Hacks\Misc.cpp" />
     <ClCompile Include="Source\Hacks\Visuals.cpp" />
     <ClCompile Include="Source\Hooks\Hooks.cpp" />
@@ -172,6 +174,7 @@
     <ClCompile Include="Source\SDK\Source2\BasePlayerController.cpp" />
     <ClCompile Include="Source\SDK\Source2\BasePlayerWeapon.cpp" />
     <ClCompile Include="Source\SDK\Source2\CPlayer_WeaponServices.cpp" />
+    <ClCompile Include="Source\SDK\Source2\CSPlayerPawnBase.cpp" />
     <ClCompile Include="Source\SDK\Source2\Handle.cpp" />
     <ClCompile Include="Source\SDK\Source2\InputSystem.cpp" />
     <ClCompile Include="Source\SDK\Utils.cpp" />
@@ -191,6 +194,8 @@
     <ClInclude Include="Dependencies\Json\nlohmann\json.hpp" />
     <ClInclude Include="Dependencies\kiero\kiero.h" />
     <ClInclude Include="Source\Config\Config.h" />
+    <ClInclude Include="Source\GameData\GameData.h" />
+    <ClInclude Include="Source\Hacks\ESP.h" />
     <ClInclude Include="Source\Hacks\Misc.h" />
     <ClInclude Include="Source\Hacks\Visuals.h" />
     <ClInclude Include="Source\Hooks\Hooks.h" />
@@ -225,6 +230,7 @@
     <ClInclude Include="Source\SDK\Source2\FrameStage.h" />
     <ClInclude Include="Source\SDK\Source2\GameEntitySystem.h" />
     <ClInclude Include="Source\SDK\Source2\GameResourceService.h" />
+    <ClInclude Include="Source\SDK\Source2\GameSceneNode.h" />
     <ClInclude Include="Source\SDK\Source2\GameTick.h" />
     <ClInclude Include="Source\SDK\Source2\GlobalVars.h" />
     <ClInclude Include="Source\SDK\Source2\Handle.h" />
@@ -237,6 +243,9 @@
     <ClInclude Include="Source\SDK\UtlTsHash.h" />
     <ClInclude Include="Source\SDK\Vector.h" />
     <ClInclude Include="Source\SDK\VirtualMethod.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\SDK\Source2\CollisionProperty.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
