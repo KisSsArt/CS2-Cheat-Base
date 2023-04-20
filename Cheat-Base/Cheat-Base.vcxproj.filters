@@ -305,6 +305,9 @@
     <ClInclude Include="Source\Hacks\ESP.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Resources\RobotoFont.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\SDK\Source2\CollisionProperty.h" />

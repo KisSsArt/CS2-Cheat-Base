@@ -120,6 +120,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -193,6 +194,7 @@
     <ClInclude Include="Dependencies\Json\JsonForward.h" />
     <ClInclude Include="Dependencies\Json\nlohmann\json.hpp" />
     <ClInclude Include="Dependencies\kiero\kiero.h" />
+    <ClInclude Include="Resources\RobotoFont.h" />
     <ClInclude Include="Source\Config\Config.h" />
     <ClInclude Include="Source\GameData\GameData.h" />
     <ClInclude Include="Source\Hacks\ESP.h" />
