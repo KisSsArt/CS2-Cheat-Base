@@ -170,6 +170,7 @@
     <ClCompile Include="Dependencies\MinHook\trampoline.c" />
     <ClCompile Include="Source\Memory\Memory.cpp" />
     <ClCompile Include="Source\Menu\Menu.cpp" />
+    <ClCompile Include="Source\SDK\Helpers.cpp" />
     <ClCompile Include="Source\SDK\Netvars.cpp" />
     <ClCompile Include="Source\SDK\Source2\BaseEntity.cpp" />
     <ClCompile Include="Source\SDK\Source2\BasePlayerController.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Source\Interfaces.h" />
     <ClInclude Include="Source\Memory\Memory.h" />
     <ClInclude Include="Source\Menu\Menu.h" />
+    <ClInclude Include="Source\SDK\Helpers.h" />
     <ClInclude Include="Source\SDK\LocalPlayer.h" />
     <ClInclude Include="Source\SDK\Pad.h" />
     <ClInclude Include="Source\SDK\ScanUtils\Module.h" />

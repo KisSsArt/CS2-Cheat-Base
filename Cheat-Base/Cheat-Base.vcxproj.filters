@@ -114,6 +114,9 @@
     <ClCompile Include="Source\Hacks\ESP.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SDK\Helpers.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\imgui\imconfig.h">
@@ -306,6 +309,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Resources\RobotoFont.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDK\Helpers.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
