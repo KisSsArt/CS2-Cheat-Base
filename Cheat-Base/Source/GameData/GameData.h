@@ -28,6 +28,7 @@ class CSPlayerController;
 struct BaseData {
     BaseData(CSPlayerPawnBase* pawn) noexcept;
 
+    float distanceToLocal = 0.0f;
     Vector origin, obbMins, obbMaxs;
 };
 
