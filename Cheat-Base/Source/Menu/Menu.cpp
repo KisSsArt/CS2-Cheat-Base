@@ -3,9 +3,13 @@
 #include "../../Dependencies/imgui/imgui.h"
 #include "../../Dependencies/imgui/imgui_stdlib.h"
 
-#include "../Config/Config.h"
+#include "../../Resources/RobotoFont.h"
 
-ImVec2 menuSize{ 475, 270 };
+#include "../Config/Config.h"
+#include "../SDK/Utils.h"
+#include "../SDK/Helpers.h"
+
+ImVec2 menuSize{ 475, 290 };
 
 Menu::Menu() noexcept
 {
@@ -13,6 +17,17 @@ Menu::Menu() noexcept
     ImGuiIO& io = ImGui::GetIO();
     io.IniFilename = io.LogFilename = nullptr;
     io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
+
+    ImFontConfig cfg;
+    cfg.OversampleV = 3;
+    cfg.FontDataOwnedByAtlas = false;
+
+    ImFontConfig icons_config;
+    icons_config.MergeMode = true;
+    icons_config.PixelSnapH = true;
+    fonts.roboto = io.Fonts->AddFontFromMemoryTTF(&Medium, 168644, 15.0f, &cfg, Helpers::getFontGlyphRanges());
+    icons_config.GlyphMinAdvanceX = 13.0f;
+    icons_config.GlyphMaxAdvanceX = 13.0f;
 }
 
 void renderConfigWindow()

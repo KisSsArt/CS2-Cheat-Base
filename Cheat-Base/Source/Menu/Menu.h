@@ -1,9 +1,8 @@
 #pragma once
 
 #include <memory>
-#include <string>
 
-#include "../../Dependencies/imgui/imgui.h"
+struct ImFont;
 
 class Menu {
 public:
@@ -11,6 +10,10 @@ public:
     void render() noexcept;
 
     bool open = true;
+
+    struct {
+        ImFont* roboto = nullptr;
+    } fonts;
 };
 
 inline std::unique_ptr<Menu> menu;
