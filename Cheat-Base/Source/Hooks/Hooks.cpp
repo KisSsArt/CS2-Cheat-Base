@@ -1,10 +1,7 @@
 #include "Hooks.h"
 
-#include <intrin.h>
-
 #include "../../Dependencies/kiero/kiero.h"
 #include "../../Dependencies/MinHook/MinHook.h"
-//#define IMGUI_DEFINE_MATH_OPERATORS
 #include "../../Dependencies/imgui/imgui.h"
 #include "../../Dependencies/imgui/imgui_impl_dx11.h"
 #include "../../Dependencies/imgui/imgui_impl_win32.h"
