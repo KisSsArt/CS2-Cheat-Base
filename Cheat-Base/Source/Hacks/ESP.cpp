@@ -1,0 +1,160 @@
+#include "ESP.h"
+
+#include <array>
+
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include "../../Dependencies/imgui/imgui.h"
+#include "../../Dependencies/imgui/imgui_internal.h"
+
+#include "../Config/Config.h"
+#include "../GameData/GameData.h"
+#include "../Menu/Menu.h"
+
+#include "../SDK/LocalPlayer.h"
+#include "../SDK/Utils.h"
+
+static ImDrawList* drawList;
+
+static constexpr auto operator-(float sub, const std::array<float, 3>& a) noexcept
+{
+    return Vector{ sub - a[0], sub - a[1], sub - a[2] };
+}
+
+struct BoundingBox {
+private:
+    bool valid;
+public:
+    ImVec2 min, max;
+    std::array<ImVec2, 8> vertices;
+
+    BoundingBox(const Vector& mins, const Vector& maxs) noexcept
+    {
+        min.y = min.x = std::numeric_limits<float>::max();
+        max.y = max.x = -std::numeric_limits<float>::max();
+
+        for (int i = 0; i < 8; ++i) {
+            Vector point{ i & 1 ? maxs.x : mins.x, i & 2 ? maxs.y : mins.y, i & 4 ? maxs.z : mins.z };
+            if (!worldToScreen(point, vertices[i])) {
+                valid = false;
+                return;
+            }
+
+            min.x = std::min(min.x, vertices[i].x);
+            min.y = std::min(min.y, vertices[i].y);
+            max.x = std::max(max.x, vertices[i].x);
+            max.y = std::max(max.y, vertices[i].y);
+        }
+        valid = true;
+    }
+
+    BoundingBox(const BaseData& data) noexcept : BoundingBox{ data.obbMins, data.obbMaxs } {}
+    BoundingBox(const Vector& center) noexcept : BoundingBox{ center - 2.0f, center + 2.0f } {}
+
+    operator bool() const noexcept
+    {
+        return valid;
+    }
+};
+
+static void renderText(ImFont* font, std::string text, const ImVec2& pos, const float size = 0.0f) noexcept
+{
+    drawList->PushTextureID(font->ContainerAtlas->TexID);
+
+    ImVec2 text_size;
+    text_size = font->CalcTextSizeA(size, FLT_MAX, -1, text.c_str(), 0, NULL);
+    text_size.x = IM_FLOOR(text_size.x + 0.99999f);
+
+    drawList->AddText(font, size, { pos.x + 1.0f, pos.y + 1.0f }, ImColor(0, 0, 0, 255) & IM_COL32_A_MASK, text.c_str());
+    drawList->AddText(font, size, { pos.x, pos.y }, ImColor(0, 0, 0, 255), text.c_str());
+
+    drawList->PopTextureID();
+}
+
+static void renderBox(const BoundingBox& bbox) noexcept
+{
+    const ImU32 color = ImColor(0.65f, 0.20f, 0.20f, 1.0f);
+    const ImU32 outlineColor = ImColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+    drawList->AddRect({ bbox.min.x + 1, bbox.min.y + 1 }, { bbox.max.x - 1, bbox.max.y - 1 }, outlineColor);
+    drawList->AddRect({ bbox.min.x - 1, bbox.min.y - 1 }, { bbox.max.x + 1, bbox.max.y + 1 }, outlineColor);
+
+    drawList->AddRect(bbox.min, bbox.max, color);
+}
+
+static void drawHealthBar(ImVec2 pos, float height, int health) noexcept
+{
+    constexpr float width = 1.f;
+    
+    const ImU32 color = ImColor(1.0f, 0.0f, 0.0f, 1.0f);
+    const ImU32 outlineColor = ImColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+    drawList->PushClipRect(pos + ImVec2{ 0.0f, (100 - health) / 100.0f * height }, pos + ImVec2{ width + 1.0f, height + 1.0f });
+
+    ImVec2 min = pos;
+    ImVec2 max = min + ImVec2{ width, height };
+
+    drawList->AddRect(ImFloor(min) + ImVec2{ -1.0f, -1.0f }, ImFloor(max) + ImVec2{ 1.0f, 1.0f }, outlineColor);
+    drawList->AddRectFilled(ImFloor(min), ImFloor(max), color);
+
+    drawList->PopClipRect();
+}
+
+static void renderEnemy(const PlayerData& playerData) noexcept
+{
+    const BoundingBox bbox{ playerData };
+    if (!bbox)
+        return;
+
+    if (config->esp.box)
+    {
+        renderBox(bbox);
+    }
+    
+    if (config->esp.healthBar)
+    {
+        drawHealthBar(bbox.min - ImVec2(5.0f, 0.0f), (bbox.max.y - bbox.min.y), playerData.health);
+    }
+
+    float text_size = std::clamp(15 * 150 / playerData.distanceToLocal, 10.0f, 15.0f);
+    float size_modifier = text_size / 15.0f;
+
+    auto space = 15 * size_modifier;
+
+    auto x_pos = bbox.max.x + 5 * size_modifier;
+    auto y_pos = bbox.min.y - 3;
+
+    if (config->esp.health)
+    {
+        ImVec2 text_size_vec;
+        text_size_vec = menu->fonts.roboto->CalcTextSizeA(text_size, FLT_MAX, -1, std::to_string(playerData.health).c_str(), 0, NULL);
+        text_size_vec.x = IM_FLOOR(text_size_vec.x + 0.99999f);
+
+        renderText(menu->fonts.roboto, std::to_string(playerData.health).c_str(), ImVec2(x_pos, y_pos), text_size);
+    }
+
+    if (config->esp.name)
+    {
+        ImVec2 text_size_vec;
+        text_size_vec = menu->fonts.roboto->CalcTextSizeA(text_size, FLT_MAX, -1, playerData.name.c_str(), 0, NULL);
+        text_size_vec.x = IM_FLOOR(text_size_vec.x + 0.99999f);
+
+        renderText(menu->fonts.roboto, playerData.name, ImVec2((bbox.min.x + bbox.max.x) / 2 - text_size_vec.x / 2, bbox.min.y - space), text_size);
+    }
+}
+
+void ESP::render(ImDrawList* list)
+{
+	if (!config->esp.enable)
+		return;
+
+	if (!localPlayer)
+		return;
+
+	drawList = list;
+
+	for (const auto& player : GameData::getPlayers())
+	{
+		if (player.alive && player.enemy)
+            renderEnemy(player);
+	}
+}
