@@ -36,7 +36,7 @@ void GameData::update() noexcept
 
         if (playerController->isPlayerController())
         {
-            if (playerController->isLocalPlayerController() || !playerController->pawnIsAlive())
+            if (playerController->isLocalPlayerController())
                 continue;
 
             CSPlayerPawnBase* pawn = playerController->getPawn();
@@ -68,14 +68,16 @@ BaseData::BaseData(CSPlayerPawnBase* pawn) noexcept
     if (!collision)
         return;
 
-    auto gameSceneNode = pawn->gameSceneNode();
-    if (!gameSceneNode)
-        return;
-
-    origin = gameSceneNode->getAbsOrigin();
+    origin = pawn->gameSceneNode()->getAbsOrigin();
 
     obbMins = collision->mins() + origin;
     obbMaxs = collision->maxs() + origin;
+
+    auto controller = memory->entitySystem->getLocalPlayerController();
+    if (!controller)
+        return;    
+
+    distanceToLocal = origin.distTo(controller->gameSceneNode()->getAbsOrigin());
 }
 
 PlayerData::PlayerData(CSPlayerController* playerController, CSPlayerPawnBase* pawn, unsigned int handle) noexcept : BaseData{ pawn }
@@ -89,12 +91,20 @@ void PlayerData::update(CSPlayerController* playerController, CSPlayerPawnBase* 
 {
     static_cast<BaseData&>(*this) = { pawn };
 
-    if (playerController->sanitizedPlayerName())
-        this->name = playerController->sanitizedPlayerName();
+    auto playerName = playerController->sanitizedPlayerName();
+    if (playerName && strlen(playerName) > 0)
+        this->name = playerName;
 
     this->alive = playerController->pawnIsAlive();
     this->health = playerController->pawnHealth();
-    this->enemy = pawn->isEnemyTo(localPlayer->team());
+
+    auto localController = memory->entitySystem->getLocalPlayerController();
+    if (localController)
+    {
+        auto localPawn = localController->getPawn();
+        if (localPawn)
+            this->enemy = pawn->isEnemyTo(localPawn->team());
+    }
 
     this->team = pawn->team();
 }
