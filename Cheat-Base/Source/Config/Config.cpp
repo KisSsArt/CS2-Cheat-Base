@@ -151,6 +151,15 @@ static void from_json(const json& j, Config::Visuals& v)
     read(j, "No Scope Crosshair", v.noScopeCrosshair);
 }
 
+static void from_json(const json& j, Config::ESP& e)
+{
+    read(j, "Enable ESP", e.enable);
+    read(j, "Enable Boxes", e.box);
+    read(j, "Enable Name", e.name);
+    read(j, "Enable Health Bar", e.healthBar);
+    read(j, "Enable Health", e.health);
+}
+
 void Config::load(size_t id) noexcept
 {
     load(configs[id].c_str());
@@ -172,6 +181,7 @@ void Config::load(std::string name) noexcept
 
     read<value_t::object>(j, "Misc", misc);
     read<value_t::object>(j, "Visuals", visuals);
+    read<value_t::object>(j, "ESP", esp);
 }
 
 // WRITE macro requires:
@@ -201,6 +211,17 @@ static void to_json(json& j, const Config::Visuals& o)
     WRITE("No Scope Crosshair", noScopeCrosshair);
 }
 
+static void to_json(json& j, const Config::ESP& o)
+{
+    const Config::ESP dummy;
+
+    WRITE("Enable ESP", enable);
+    WRITE("Enable Boxes", box);
+    WRITE("Enable Name", name);
+    WRITE("Enable Health Bar", healthBar);
+    WRITE("Enable Health", health);
+}
+
 void removeEmptyObjects(json& j) noexcept
 {
     for (auto it = j.begin(); it != j.end();) {
@@ -227,6 +248,7 @@ void Config::save(size_t id) const noexcept
 
         j["Misc"] = misc;
         j["Visuals"] = visuals;
+        j["ESP"] = esp;
 
         removeEmptyObjects(j);
         out << std::setw(2) << j;
@@ -261,4 +283,5 @@ void Config::reset() noexcept
 {
     misc = { };
     visuals = { };
+    esp = { };
 }
