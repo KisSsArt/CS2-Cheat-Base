@@ -4,7 +4,7 @@
 
 class BaseEntity;
 
-class LocalPlayer {
+class LocalEntity {
 public:
     void init(BaseEntity** entity) noexcept
     {
@@ -31,4 +31,4 @@ private:
     BaseEntity** localEntity = nullptr;
 };
 
-inline LocalPlayer localPlayer;
+inline LocalEntity localPlayer;
