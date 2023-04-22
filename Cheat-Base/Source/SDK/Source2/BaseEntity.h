@@ -43,10 +43,10 @@ class CollisionProperty;
 
 class BaseEntity : public EntityInstance {
 public:
+	NETVAR(std::int8_t, team, "C_BaseEntity", "m_iTeamNum");
+	NETVAR(int, flags, "C_BaseEntity", "m_fFlags");
 	NETVAR(GameSceneNode*, gameSceneNode, "C_BaseEntity", "m_pGameSceneNode");
 	NETVAR(CollisionProperty*, collision, "C_BaseEntity", "m_pCollision");
-	NETVAR(int, flags, "C_BaseEntity", "m_fFlags");
-	NETVAR(std::int8_t, team, "CBaseEntity", "m_iTeamNum");
 	NETVAR(MoveType, moveType, "C_BaseEntity", "m_MoveType");
 
 	bool isPlayerController();
