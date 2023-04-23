@@ -56,46 +56,15 @@ public:
     }
 };
 
-static void renderText(ImFont* font, std::string text, const ImVec2& pos, const float size = 0.0f) noexcept
-{
-    drawList->PushTextureID(font->ContainerAtlas->TexID);
-
-    ImVec2 text_size;
-    text_size = font->CalcTextSizeA(size, FLT_MAX, -1, text.c_str(), 0, NULL);
-    text_size.x = IM_FLOOR(text_size.x + 0.99999f);
-
-    drawList->AddText(font, size, { pos.x + 1.0f, pos.y + 1.0f }, ImColor(0, 0, 0, 255) & IM_COL32_A_MASK, text.c_str());
-    drawList->AddText(font, size, { pos.x, pos.y }, ImColor(0, 0, 0, 255), text.c_str());
-
-    drawList->PopTextureID();
-}
-
-static void renderBox(const BoundingBox& bbox) noexcept
-{
-    const ImU32 color = ImColor(0.65f, 0.20f, 0.20f, 1.0f);
-    const ImU32 outlineColor = ImColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-    drawList->AddRect({ bbox.min.x + 1, bbox.min.y + 1 }, { bbox.max.x - 1, bbox.max.y - 1 }, outlineColor);
-    drawList->AddRect({ bbox.min.x - 1, bbox.min.y - 1 }, { bbox.max.x + 1, bbox.max.y + 1 }, outlineColor);
-
-    drawList->AddRect(bbox.min, bbox.max, color);
-}
-
 static void drawHealthBar(ImVec2 pos, float height, int health) noexcept
 {
     constexpr float width = 1.f;
     
-    const ImU32 color = ImColor(1.0f, 0.0f, 0.0f, 1.0f);
-    const ImU32 outlineColor = ImColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-    drawList->PushClipRect(pos + ImVec2{ 0.0f, (100 - health) / 100.0f * height }, pos + ImVec2{ width + 1.0f, height + 1.0f });
-
     ImVec2 min = pos;
     ImVec2 max = min + ImVec2{ width, height };
 
-    drawList->AddRect(ImFloor(min) + ImVec2{ -1.0f, -1.0f }, ImFloor(max) + ImVec2{ 1.0f, 1.0f }, outlineColor);
-    drawList->AddRectFilled(ImFloor(min), ImFloor(max), color);
-
+    drawList->PushClipRect(pos + ImVec2{ 0.0f, (100 - health) / 100.0f * height }, pos + ImVec2{ width + 1.0f, height + 1.0f });
+    drawList->AddRectFilled(ImFloor(min), ImFloor(max), ImColor(1.0f, 0.0f, 0.0f, 1.0f));
     drawList->PopClipRect();
 }
 
@@ -107,7 +76,7 @@ static void renderEnemy(const PlayerData& playerData) noexcept
 
     if (config->esp.box)
     {
-        renderBox(bbox);
+        drawList->AddRect(bbox.min, bbox.max, ImColor(0, 0, 0, 255));
     }
     
     if (config->esp.healthBar)
@@ -129,7 +98,7 @@ static void renderEnemy(const PlayerData& playerData) noexcept
         text_size_vec = menu->fonts.roboto->CalcTextSizeA(text_size, FLT_MAX, -1, std::to_string(playerData.health).c_str(), 0, NULL);
         text_size_vec.x = IM_FLOOR(text_size_vec.x + 0.99999f);
 
-        renderText(menu->fonts.roboto, std::to_string(playerData.health).c_str(), ImVec2(x_pos, y_pos), text_size);
+        drawList->AddText(menu->fonts.roboto, text_size, ImVec2(x_pos, y_pos), ImColor(0, 0, 0, 255), std::to_string(playerData.health).c_str());
     }
 
     if (config->esp.name)
@@ -138,7 +107,7 @@ static void renderEnemy(const PlayerData& playerData) noexcept
         text_size_vec = menu->fonts.roboto->CalcTextSizeA(text_size, FLT_MAX, -1, playerData.name.c_str(), 0, NULL);
         text_size_vec.x = IM_FLOOR(text_size_vec.x + 0.99999f);
 
-        renderText(menu->fonts.roboto, playerData.name, ImVec2((bbox.min.x + bbox.max.x) / 2 - text_size_vec.x / 2, bbox.min.y - space), text_size);
+        drawList->AddText(menu->fonts.roboto, text_size, ImVec2((bbox.min.x + bbox.max.x) / 2 - text_size_vec.x / 2, bbox.min.y - space), ImColor(0, 0, 0, 255), playerData.name.c_str());
     }
 }
 
