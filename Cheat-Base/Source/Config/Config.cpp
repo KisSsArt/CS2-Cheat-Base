@@ -8,8 +8,8 @@
 #include <shellapi.h>
 #include <ShlObj.h>
 
-#include "../../Dependencies/Json/nlohmann/json.hpp"
-#include "../../Dependencies/Json/JsonForward.h"
+#include "Json/nlohmann/json.hpp"
+#include "Json/JsonForward.h"
 
 Config::Config() noexcept
 {

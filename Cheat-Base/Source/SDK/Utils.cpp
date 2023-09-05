@@ -1,6 +1,6 @@
 #include "Utils.h"
 
-#include "../../Dependencies/imgui/imgui.h"
+#include "imgui/imgui.h"
 
 #include "../Interfaces.h"
 #include "../Memory/Memory.h"

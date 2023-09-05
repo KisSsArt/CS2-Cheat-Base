@@ -3,8 +3,8 @@
 #include <array>
 
 #define IMGUI_DEFINE_MATH_OPERATORS
-#include "../../Dependencies/imgui/imgui.h"
-#include "../../Dependencies/imgui/imgui_internal.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_internal.h"
 
 #include "../Config/Config.h"
 #include "../GameData/GameData.h"

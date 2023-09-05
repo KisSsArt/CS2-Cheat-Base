@@ -1,11 +1,5 @@
 #include "Hooks.h"
 
-#include "../../Dependencies/kiero/kiero.h"
-#include "../../Dependencies/MinHook/MinHook.h"
-#include "../../Dependencies/imgui/imgui.h"
-#include "../../Dependencies/imgui/imgui_impl_dx11.h"
-#include "../../Dependencies/imgui/imgui_impl_win32.h"
-
 #include "../Interfaces.h"
 #include "../Memory/Memory.h"
 #include "../Menu/Menu.h"
@@ -28,6 +22,13 @@
 #include "../Hacks/Misc.h"
 #include "../Hacks/Visuals.h"
 #include "../Hacks/ESP.h"
+
+#include <MinHook/MinHook.h>
+#include <kiero/kiero.h>
+
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_dx11.h>
+#include <imgui/imgui_impl_win32.h>
 
 bool init = false;
 

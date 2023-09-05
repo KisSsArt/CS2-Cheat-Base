@@ -1,6 +1,6 @@
 #include "Visuals.h"
 
-#include "../../Dependencies/imgui/imgui.h"
+#include "imgui/imgui.h"
 
 #include "../Config/Config.h"
 #include "../Interfaces.h"

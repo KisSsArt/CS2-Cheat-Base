@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include "../../Dependencies/fnv.h"
+#include "fnv.h"
 
 #define NETVAR(type, function, class, prop) \
 __forceinline type& function() \
