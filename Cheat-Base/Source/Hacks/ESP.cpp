@@ -10,8 +10,8 @@
 #include "../GameData/GameData.h"
 #include "../Menu/Menu.h"
 
-#include "../SDK/LocalPlayer.h"
-#include "../SDK/Utils.h"
+#include "LocalPlayer.h"
+#include "Utils.h"
 
 static ImDrawList* drawList;
 

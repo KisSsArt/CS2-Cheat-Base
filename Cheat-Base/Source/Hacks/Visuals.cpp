@@ -5,7 +5,7 @@
 #include "../Config/Config.h"
 #include "../Interfaces.h"
 
-#include "../SDK/Source2/EngineClient.h"
+#include "Source2/EngineClient.h"
 
 void Visuals::NoScopeCrosshair(ImDrawList* drawList)
 {

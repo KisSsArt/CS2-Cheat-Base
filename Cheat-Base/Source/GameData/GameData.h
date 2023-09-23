@@ -20,7 +20,7 @@ namespace GameData
     const std::vector<PlayerData>& getPlayers() noexcept;
 }
 
-#include "../SDK/Vector.h"
+#include "Vector.h"
 
 class CSPlayerPawnBase;
 class CSPlayerController;

@@ -2,8 +2,8 @@
 
 #include <memory>
 
-#include "../SDK/ScanUtils/stb.h"
-#include "../SDK/ScanUtils/Module.h"
+#include "ScanUtils/stb.h"
+#include "ScanUtils/Module.h"
 
 #define SIGNATURE(sig) stb::simple_conversion::build<stb::fixed_string{ sig }>::value
 

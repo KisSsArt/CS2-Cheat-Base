@@ -3,10 +3,10 @@
 #include "../Config/Config.h"
 #include "../Memory/Memory.h"
 
-#include "../SDK/Source2/GameEntitySystem.h"
-#include "../SDK/Source2/MoveType.h"
-#include "../SDK/Source2/UserCmd.h"
-#include "../SDK/Source2/CSPlayerPawnBase.h"
+#include "Source2/GameEntitySystem.h"
+#include "Source2/MoveType.h"
+#include "Source2/UserCmd.h"
+#include "Source2/CSPlayerPawnBase.h"
 
 void Misc::BunnyHop(UserCmd* cmd)
 {

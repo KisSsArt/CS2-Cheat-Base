@@ -2,9 +2,9 @@
 
 #include "../Interfaces.h"
 
-#include "../SDK/Source2/GameResourceService.h"
+#include "Source2/GameResourceService.h"
 
-#include "../SDK/Utils.h"
+#include "Utils.h"
 
 Memory::Memory() noexcept
 {

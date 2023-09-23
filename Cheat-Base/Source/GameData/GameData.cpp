@@ -4,12 +4,12 @@
 
 #include "../Memory/Memory.h"
 
-#include "../SDK/LocalPlayer.h"
+#include "LocalPlayer.h"
 
-#include "../SDK/Source2/GameEntitySystem.h"
-#include "../SDK/Source2/CSPlayerPawnBase.h"
-#include "../SDK/Source2/CollisionProperty.h"
-#include "../SDK/Source2/GameSceneNode.h"
+#include "Source2/GameEntitySystem.h"
+#include "Source2/CSPlayerPawnBase.h"
+#include "Source2/CollisionProperty.h"
+#include "Source2/GameSceneNode.h"
 
 static std::vector<PlayerData> playerData;
 

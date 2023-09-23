@@ -6,8 +6,9 @@
 #include "../../Resources/RobotoFont.h"
 
 #include "../Config/Config.h"
-#include "../SDK/Utils.h"
-#include "../SDK/Helpers.h"
+
+#include "Utils.h"
+#include "Helpers.h"
 
 ImVec2 menuSize{ 475, 290 };
 
