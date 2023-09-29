@@ -158,6 +158,11 @@
     <ClCompile Include="Dependencies\imgui\imgui_tables.cpp" />
     <ClCompile Include="Dependencies\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Dependencies\kiero\kiero.cpp" />
+    <ClCompile Include="Dependencies\kiero\minhook\src\buffer.c" />
+    <ClCompile Include="Dependencies\kiero\minhook\src\hde\hde32.c" />
+    <ClCompile Include="Dependencies\kiero\minhook\src\hde\hde64.c" />
+    <ClCompile Include="Dependencies\kiero\minhook\src\hook.c" />
+    <ClCompile Include="Dependencies\kiero\minhook\src\trampoline.c" />
     <ClCompile Include="Source\Cheat-Base.cpp" />
     <ClCompile Include="Source\Config\Config.cpp" />
     <ClCompile Include="Source\GameData\GameData.cpp" />
@@ -166,11 +171,6 @@
     <ClCompile Include="Source\Hacks\Visuals.cpp" />
     <ClCompile Include="Source\Hooks\Hooks.cpp" />
     <ClCompile Include="Source\Hooks\MinHook\MinHook.cpp" />
-    <ClCompile Include="Dependencies\MinHook\buffer.c" />
-    <ClCompile Include="Dependencies\MinHook\hde\hde32.c" />
-    <ClCompile Include="Dependencies\MinHook\hde\hde64.c" />
-    <ClCompile Include="Dependencies\MinHook\hook.c" />
-    <ClCompile Include="Dependencies\MinHook\trampoline.c" />
     <ClCompile Include="Source\Memory\Memory.cpp" />
     <ClCompile Include="Source\Menu\Menu.cpp" />
     <ClCompile Include="Source\SDK\Helpers.cpp" />
@@ -198,6 +198,14 @@
     <ClInclude Include="Dependencies\Json\JsonForward.h" />
     <ClInclude Include="Dependencies\Json\nlohmann\json.hpp" />
     <ClInclude Include="Dependencies\kiero\kiero.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\include\MinHook.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\src\buffer.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\src\hde\hde32.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\src\hde\hde64.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\src\hde\pstdint.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\src\hde\table32.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\src\hde\table64.h" />
+    <ClInclude Include="Dependencies\kiero\minhook\src\trampoline.h" />
     <ClInclude Include="Resources\RobotoFont.h" />
     <ClInclude Include="Source\Config\Config.h" />
     <ClInclude Include="Source\GameData\GameData.h" />
@@ -206,14 +214,6 @@
     <ClInclude Include="Source\Hacks\Visuals.h" />
     <ClInclude Include="Source\Hooks\Hooks.h" />
     <ClInclude Include="Source\Hooks\MinHook\MinHook.h" />
-    <ClInclude Include="Dependencies\MinHook\buffer.h" />
-    <ClInclude Include="Dependencies\MinHook\hde\hde32.h" />
-    <ClInclude Include="Dependencies\MinHook\hde\hde64.h" />
-    <ClInclude Include="Dependencies\MinHook\hde\pstdint.h" />
-    <ClInclude Include="Dependencies\MinHook\hde\table32.h" />
-    <ClInclude Include="Dependencies\MinHook\hde\table64.h" />
-    <ClInclude Include="Dependencies\MinHook\MinHook.h" />
-    <ClInclude Include="Dependencies\MinHook\trampoline.h" />
     <ClInclude Include="Source\Interfaces.h" />
     <ClInclude Include="Source\Memory\Memory.h" />
     <ClInclude Include="Source\Menu\Menu.h" />
@@ -252,7 +252,11 @@
     <ClInclude Include="Source\SDK\VirtualMethod.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Dependencies\kiero\minhook\dll_resources\MinHook.def" />
     <None Include="Source\SDK\Source2\CollisionProperty.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Dependencies\kiero\minhook\dll_resources\MinHook.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

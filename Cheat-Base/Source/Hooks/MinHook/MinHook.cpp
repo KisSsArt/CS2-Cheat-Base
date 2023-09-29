@@ -1,6 +1,6 @@
 #include "MinHook.h"
 
-#include "../../../Dependencies/MinHook/MinHook.h"
+#include <kiero/minhook/include/MinHook.h>
 
 static auto calculateVmtLength(uintptr_t* vmt) noexcept
 {

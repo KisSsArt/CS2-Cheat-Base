@@ -23,8 +23,8 @@
 #include "../Hacks/Visuals.h"
 #include "../Hacks/ESP.h"
 
-#include <MinHook/MinHook.h>
 #include <kiero/kiero.h>
+#include <kiero/minhook/include/MinHook.h>
 
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_dx11.h>
