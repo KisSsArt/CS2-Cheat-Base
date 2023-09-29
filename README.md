@@ -10,7 +10,7 @@ Cheat base for Counter-Strike 2.
 ## How to use
 1. Download [CS2-Cheat-Base source](https://github.com/KisSsArt/CS2-Cheat-Base/archive/master.zip).
 2. Compile the project using Visual Studio (use build configuration `Release | x64`).
-3. Find `CS2-Cheat-Base.dll` into `_output` folder.
+3. Find `Cheat-Base.dll` into `_output` folder.
 4. Inject .dll into `cs2.exe` process (MANUAL MAP ONLY).
 5. Enjoy!
 
