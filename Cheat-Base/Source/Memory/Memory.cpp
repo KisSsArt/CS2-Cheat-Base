@@ -9,7 +9,7 @@
 Memory::Memory() noexcept
 {
     clientModule.init("client.dll");
-    sdl2.init("SDL2.dll");
+    sdl2.init("SDL3.dll");
 
     globalVars = clientModule.FindPattern(SIGNATURE("48 8B 05 ? ? ? ? 48 8B D8 80 78 3D 00 75 1D 80 78 3C 00 75")).toAbsolute(3, 7).get<GlobalVars*>();
     input = clientModule.FindPattern(SIGNATURE("48 8B 0D ? ? ? ? 48 8B 01 FF 50 18 8B DF 66 0F 1F 44 00 ? 48 8B 0D")).toAbsolute(3, 7).get<Input*>();
