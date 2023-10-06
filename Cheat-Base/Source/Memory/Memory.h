@@ -16,7 +16,7 @@ class Memory {
 public:
     Memory() noexcept;
     CModule clientModule;
-    CModule sdl2;
+    CModule sdl3;
 
     GlobalVars* globalVars;
     Input* input;
@@ -26,7 +26,7 @@ public:
     std::uintptr_t createMove;
     std::uintptr_t levelInit;
     std::uintptr_t frameStage;
-    std::uintptr_t  mouseInputEnabled;
+    std::uintptr_t mouseInputEnabled;
 
     void* (__thiscall* getBaseEntity)(void*, int);
     void* (__thiscall* getBaseEntityFromHandle)(void*, unsigned int);
