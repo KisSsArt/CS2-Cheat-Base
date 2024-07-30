@@ -48,9 +48,6 @@
     <ClCompile Include="Dependencies\kiero\kiero.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Hooks\MinHook\MinHook.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Menu\Menu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -117,6 +114,9 @@
     <ClCompile Include="Dependencies\kiero\minhook\src\trampoline.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Hooks\MinHook\MinHook.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\imgui\imconfig.h">
@@ -150,9 +150,6 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\kiero\kiero.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Hooks\MinHook\MinHook.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Source\Menu\Menu.h">
@@ -312,6 +309,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\kiero\minhook\src\trampoline.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Definitions.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Hooks\MinHook\MinHook.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

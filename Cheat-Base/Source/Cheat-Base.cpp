@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#include "../Dependencies/kiero/kiero.h"
+#include "kiero/kiero.h"
 
 #include "Hooks/Hooks.h"
 

@@ -2,7 +2,7 @@
 
 #include "EntityIdentity.h"
 
-#include "../../../Dependencies/fnv.h"
+#include "fnv.h"
 
 bool BaseEntity::isPlayerController()
 {

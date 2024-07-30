@@ -18,5 +18,6 @@ Cheat base for Counter-Strike 2.
 
 ## Dependencies
 - [imgui](https://github.com/ocornut/imgui)
+- [Json](https://github.com/nlohmann/json)
 - [STB](https://github.com/cristeigabriel/STB)
 - [kiero](https://github.com/Rebzzel/kiero)
