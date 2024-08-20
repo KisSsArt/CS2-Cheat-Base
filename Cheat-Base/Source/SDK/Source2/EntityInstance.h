@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Netvars.h"
+#include "../Schema.h"
 
 #include "Handle.h"
 
@@ -8,5 +8,5 @@ class EntityIdentity;
 
 class EntityInstance {
 public:
-	NETVAR(EntityIdentity*, entity, "CEntityInstance", "m_pEntity");
+	SCHEMA(EntityIdentity*, entity, "CEntityInstance", "m_pEntity");
 };

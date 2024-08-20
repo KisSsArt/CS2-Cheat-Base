@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../Netvars.h"
+#include "../Schema.h"
 #include "../Vector.h"
 
 #include "Handle.h"
 
 class CollisionProperty {
 public:
-	NETVAR(Vector, mins, "CCollisionProperty", "m_vecMins");
-	NETVAR(Vector, maxs, "CCollisionProperty", "m_vecMaxs");
+	SCHEMA(Vector, mins, "CCollisionProperty", "m_vecMins");
+	SCHEMA(Vector, maxs, "CCollisionProperty", "m_vecMaxs");
 };

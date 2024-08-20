@@ -2,13 +2,13 @@
 
 #include "Handle.h"
 
-#include "../Netvars.h"
+#include "../Schema.h"
 
 class BasePlayerWeapon;
 
 class CPlayer_WeaponServices {
 public:
-	NETVAR(Handle, activeWeapon, "CPlayer_WeaponServices", "m_hActiveWeapon");
+	SCHEMA(Handle, activeWeapon, "CPlayer_WeaponServices", "m_hActiveWeapon");
 
 	BasePlayerWeapon* getActiveWeapon();
 };

@@ -1,9 +1,9 @@
 #pragma once 
 
-#include "../Netvars.h"
+#include "../Schema.h"
 
 class GameSceneNode {
 public:
-	NETVAR(Vector, getAbsOrigin, "CGameSceneNode", "m_vecAbsOrigin");
-	NETVAR(Vector, origin, "CGameSceneNode", "m_vecOrigin");
+	SCHEMA(Vector, getAbsOrigin, "CGameSceneNode", "m_vecAbsOrigin");
+	SCHEMA(Vector, origin, "CGameSceneNode", "m_vecOrigin");
 };

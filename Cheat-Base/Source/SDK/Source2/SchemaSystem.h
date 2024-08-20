@@ -28,12 +28,12 @@ public:
     {
         return reinterpret_cast<int(__thiscall*)(void*, int*, uint8_t*)>(m_vtable[3])(this, out_size1, unk_probably_not_size);
     }
-public:
+
     bool getSize(int* out_size) {
         uint8_t smh = 0;
         return getSizes(out_size, &smh);
     }
-public:
+
     uintptr_t* m_vtable; // 0x0000
     const char* m_name; // 0x0008
     SchemaSystemTypeScope* m_type_scope; // 0x0010
@@ -149,13 +149,13 @@ private:
 
 class SchemaSystem {
 public:
-    __forceinline SchemaSystemTypeScope* globalTypeScope()
+    SchemaSystemTypeScope* globalTypeScope()
     {
         using GlobalTypeScope_t = SchemaSystemTypeScope* (__thiscall*)(void*);
         return VirtualMethod::getMethod<GlobalTypeScope_t>(this, 11)(this);
     }
 
-    __forceinline SchemaSystemTypeScope* findTypeScopeForModule(const char* module)
+    SchemaSystemTypeScope* findTypeScopeForModule(const char* module)
     {
         using FindTypeScopeForModule_t = SchemaSystemTypeScope* (__thiscall*)(void*, const char*);
         return VirtualMethod::getMethod<FindTypeScopeForModule_t>(this, 13)(this, module);

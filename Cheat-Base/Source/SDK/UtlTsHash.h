@@ -53,7 +53,7 @@ public:
     }
 
     // Returns elements in the table
-    std::vector< T > GetElements(void);
+    std::vector<T> GetElements(void);
 
 public:
     // Templatized for memory tracking purposes
@@ -71,14 +71,14 @@ public:
     struct HashFixedStructDataInternalT {
         DataT m_data;
         Keytype m_ui_key;
-        char pad_0x0020[0x8];
+        PAD(0x8)
     };
 
     using HashFixedStructDataT = HashFixedStructDataInternalT< T >;
 
     struct HashStructDataT {
-        char pad_0x0000[0x10];// 0x0000
-        std::array< HashFixedStructDataT, 256 > m_list;
+        PAD(0x10)
+        std::array<HashFixedStructDataT, 256> m_list;
     };
 
     struct HashAllocatedDataT {
@@ -89,15 +89,15 @@ public:
         }
 
     private:
-        char pad_0x0000[0x18];// 0x0000
-        std::array< HashFixedDataT, 128 > m_list_;
+        PAD(0x18)
+        std::array<HashFixedDataT, 128> m_list_;
     };
 
     // Templatized for memory tracking purposes
-    template< typename DataT >
+    template<typename DataT>
     struct HashBucketDataInternalT {
         DataT m_data;
-        HashFixedDataInternalT< DataT >* m_next;
+        HashFixedDataInternalT<DataT>* m_next;
         Keytype m_ui_key;
     };
 
@@ -126,7 +126,7 @@ public:
 template<class T, class Keytype>
 std::vector<T> utlTsHash<T, Keytype>::GetElements(void)
 {
-    std::vector< T > list;
+    std::vector<T> list;
 
     const int n_count = Count();
     auto n_index = 0;

@@ -4,21 +4,21 @@
 
 #include "fnv.h"
 
-#define NETVAR(type, function, class, prop) \
+#define SCHEMA(type, function, class, prop) \
 __forceinline type& function() \
 { \
-    const auto offset = Netvar::get(fnv::hash(class), fnv::hash(prop));  \
+    const auto offset = Schema::get(fnv::hash(class), fnv::hash(prop));  \
     return *reinterpret_cast<type*>(reinterpret_cast<uintptr_t>(this) + offset); \
 } \
 
-#define PNETVAR(type, function, class, prop) \
+#define PSCHEMA(type, function, class, prop) \
 auto function() \
 { \
-    const auto offset = Netvar::get(fnv::hash(class), fnv::hash(prop)); \
+    const auto offset = Schema::get(fnv::hash(class), fnv::hash(prop)); \
     return reinterpret_cast<std::add_pointer_t<type>>((uintptr_t)(this) + offset); \
 } \
 
-namespace Netvar
+namespace Schema
 {
     short get(const hash32_t& classHash, const hash32_t& propHash);
     void init();

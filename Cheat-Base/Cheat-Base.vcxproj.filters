@@ -60,7 +60,7 @@
     <ClCompile Include="Source\SDK\Source2\BaseEntity.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SDK\Netvars.cpp">
+    <ClCompile Include="Source\SDK\Schema.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Source\Hacks\Misc.cpp">
@@ -215,7 +215,7 @@
     <ClInclude Include="Source\SDK\ScanUtils\stb.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SDK\Netvars.h">
+    <ClInclude Include="Source\SDK\Schema.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Source\SDK\Source2\SchemaSystem.h">

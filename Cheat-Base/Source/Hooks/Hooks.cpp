@@ -197,7 +197,7 @@ HRESULT __stdcall presentHook(IDXGISwapChain* swapChain, UINT syncInterval, UINT
         ImGui_ImplWin32_Init(window);
         ImGui_ImplDX11_Init(device, context);
 
-        Netvar::init();
+        Schema::init();
 
         originalWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)wndProc);
 
@@ -260,10 +260,10 @@ void Hooks::install() noexcept
     config = std::make_unique<Config>();
     menu = std::make_unique<Menu>();
 
-    createMove.detour(memory->createMove, createMoveHook);
-    levelInit.detour(memory->levelInit, levelInitHook);
-    frameStage.detour(memory->frameStage, frameStageNotifyHook);
-    mouseInputEnabled.detour(memory->mouseInputEnabled, mouseInputEnabledHook);
+    //createMove.detour(memory->createMove, createMoveHook);
+    //levelInit.detour(memory->levelInit, levelInitHook);
+    //frameStage.detour(memory->frameStage, frameStageNotifyHook);
+    //mouseInputEnabled.detour(memory->mouseInputEnabled, mouseInputEnabledHook);
 
     MH_EnableHook(MH_ALL_HOOKS);
 }

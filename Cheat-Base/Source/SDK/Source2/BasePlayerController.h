@@ -6,8 +6,8 @@ class CSPlayerPawnBase;
 
 class BasePlayerController : public BaseEntity {
 public:
-	NETVAR(Handle, pawn, "CBasePlayerController", "m_hPawn");
-	NETVAR(bool, isLocalPlayerController, "CBasePlayerController", "m_bIsLocalPlayerController");
+	SCHEMA(Handle, pawn, "CBasePlayerController", "m_hPawn");
+	SCHEMA(bool, isLocalPlayerController, "CBasePlayerController", "m_bIsLocalPlayerController");
 
 	CSPlayerPawnBase* getPawn();
 };

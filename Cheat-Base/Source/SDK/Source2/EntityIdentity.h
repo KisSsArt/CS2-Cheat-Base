@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Netvars.h"
+#include "../Schema.h"
 
 class EntityIdentity {
 public:
-	NETVAR(const char*, designerName, "CEntityIdentity", "m_designerName");
+	SCHEMA(const char*, designerName, "CEntityIdentity", "m_designerName");
 };

@@ -3,8 +3,7 @@
 #include "EntityInstance.h"
 #include "MoveType.h"
 
-enum flags_t : int
-{
+enum flags_t : int {
 	fl_onground = (1 << 0),
 	fl_ducking = (1 << 1),
 	fl_waterjump = (1 << 2),
@@ -43,11 +42,11 @@ class CollisionProperty;
 
 class BaseEntity : public EntityInstance {
 public:
-	NETVAR(std::int8_t, team, "C_BaseEntity", "m_iTeamNum");
-	NETVAR(int, flags, "C_BaseEntity", "m_fFlags");
-	NETVAR(GameSceneNode*, gameSceneNode, "C_BaseEntity", "m_pGameSceneNode");
-	NETVAR(CollisionProperty*, collision, "C_BaseEntity", "m_pCollision");
-	NETVAR(MoveType, moveType, "C_BaseEntity", "m_MoveType");
+	SCHEMA(std::int8_t, team, "C_BaseEntity", "m_iTeamNum");
+	SCHEMA(int, flags, "C_BaseEntity", "m_fFlags");
+	SCHEMA(GameSceneNode*, gameSceneNode, "C_BaseEntity", "m_pGameSceneNode");
+	SCHEMA(CollisionProperty*, collision, "C_BaseEntity", "m_pCollision");
+	SCHEMA(MoveType, moveType, "C_BaseEntity", "m_MoveType");
 
 	bool isPlayerController();
 };

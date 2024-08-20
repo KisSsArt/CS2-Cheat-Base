@@ -129,6 +129,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,7 +176,7 @@
     <ClCompile Include="Source\Memory\Memory.cpp" />
     <ClCompile Include="Source\Menu\Menu.cpp" />
     <ClCompile Include="Source\SDK\Helpers.cpp" />
-    <ClCompile Include="Source\SDK\Netvars.cpp" />
+    <ClCompile Include="Source\SDK\Schema.cpp" />
     <ClCompile Include="Source\SDK\Source2\BaseEntity.cpp" />
     <ClCompile Include="Source\SDK\Source2\BasePlayerController.cpp" />
     <ClCompile Include="Source\SDK\Source2\BasePlayerWeapon.cpp" />
@@ -223,7 +225,7 @@
     <ClInclude Include="Source\SDK\Pad.h" />
     <ClInclude Include="Source\SDK\ScanUtils\Module.h" />
     <ClInclude Include="Source\SDK\ScanUtils\stb.h" />
-    <ClInclude Include="Source\SDK\Netvars.h" />
+    <ClInclude Include="Source\SDK\Schema.h" />
     <ClInclude Include="Source\SDK\Source2\BaseEntity.h" />
     <ClInclude Include="Source\SDK\Source2\BasePlayerController.h" />
     <ClInclude Include="Source\SDK\Source2\BasePlayerPawn.h" />
